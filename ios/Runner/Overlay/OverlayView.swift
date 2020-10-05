@@ -1,3 +1,4 @@
+import SwiftUI
 
 /// The overlay which renders a SwiftUI view, given its availability in iOS 13
 /// The background is a low opacity white, so that it sets a boundary between Flutter and Swift.
@@ -9,7 +10,7 @@ class OverlayView: UIView {
     self.controller = controller
     super.init(frame: .zero)
 
-    self.addGestureRecognizer(PassiveGestureRecognizer(eventForwardingTarget: controller.view, controller: controller))
+//    self.addGestureRecognizer(PassiveGestureRecognizer(eventForwardingTarget: controller.view, controller: controller))
   }
   
   func layoutView(controller: FlutterViewController) {
@@ -20,8 +21,10 @@ class OverlayView: UIView {
       SUIController = UIHostingController(rootView: OverlaySwiftUIView())
       controller.addChild(SUIController)
       SUIController.view.frame = controller.view.bounds
-      controller.view.addSubview(SUIController.view)
       SUIController.didMove(toParent: controller)
+      self.addSubview(SUIController.view)
+      SUIController.removeFromParent()
+      controller.view.addSubview(SUIController.view)
       SUIController.view.backgroundColor = .clear
     }
   }
@@ -29,5 +32,17 @@ class OverlayView: UIView {
   required init?(coder: NSCoder) {
     controller = coder.decodeObject(forKey: "controller") as! FlutterViewController
     super.init(coder: coder)
+  }
+  
+  override var center: CGPoint {
+    didSet {
+      SUIController.view.center = self.center
+    }
+  }
+  
+  override var alpha: CGFloat {
+    didSet {
+      SUIController.view.alpha = self.alpha
+    }
   }
 }
