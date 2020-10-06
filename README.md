@@ -9,7 +9,7 @@ A Flutter SwiftUI overlay, for testing purposes.
 - [x] Lets you add widgets in a dictionary style
 - [ ] Refactored and unified code
 
-(Screen recording of demo)[https://github.com/DanielEdrisian/FlutterSwiftUIOverlay/blob/master/final%20scr.mov]
+[Screen recording of demo](https://github.com/DanielEdrisian/FlutterSwiftUIOverlay/blob/master/final%20scr.mov)
 
 # Get Started
 
