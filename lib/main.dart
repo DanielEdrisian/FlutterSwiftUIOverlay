@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 
 const EventChannel _platformEventChannel =
     const EventChannel('overlay_ios.flutter.io/responder');
@@ -29,15 +30,14 @@ class FlutterDemo extends StatefulWidget {
 }
 
 class _FlutterDemoState extends State<FlutterDemo> {
-  double platformTouchPoint;
+  String controlName = 'Null';
 
   @override
   void initState() {
     super.initState();
 
-    _platformEventChannel.receiveBroadcastStream().listen((dynamic touchPoint) {
-      if (touchPoint != platformTouchPoint)
-        setState(() => platformTouchPoint = touchPoint);
+    _platformEventChannel.receiveBroadcastStream().listen((dynamic name) {
+      if (name != controlName) setState(() => controlName = name);
     });
   }
 
@@ -45,8 +45,21 @@ class _FlutterDemoState extends State<FlutterDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: <Widget>[Align(child: Text(platformTouchPoint.toString()))],
+        children: <Widget>[Align(child: widgetForKey(controlName))],
       ),
     );
+  }
+
+  Widget widgetForKey(String key) {
+    Map<String, Widget> map = {
+      'CupertinoButton': CupertinoButton(
+        child: Text('Button'),
+        onPressed: () {/** */},
+      ),
+      'CupertinoTextField': CupertinoTextField(
+        placeholder: "Placeholder",
+      ),
+    };
+    return map[key];
   }
 }
