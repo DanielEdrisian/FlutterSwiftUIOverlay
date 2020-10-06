@@ -59,6 +59,20 @@ class _FlutterDemoState extends State<FlutterDemo> {
       'CupertinoTextField': CupertinoTextField(
         placeholder: "Placeholder",
       ),
+      'CupertinoPicker': CupertinoPicker(
+        scrollController: FixedExtentScrollController(initialItem: 3),
+        magnification: 1.2,
+        useMagnifier: true,
+        itemExtent: 32.0,
+        onSelectedItemChanged: (value) {},
+        children: const [
+          Text('One'),
+          Text('Two'),
+          Text('Three'),
+          Text('Four'),
+          Text('Five'),
+        ],
+      )
     };
     return map[key];
   }
