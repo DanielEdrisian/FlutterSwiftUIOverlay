@@ -3,10 +3,15 @@
 A Flutter SwiftUI overlay, for testing purposes. 
 
 - [x] Shows SwiftUI overlay on top of Flutter application
-- [ ] Correctly routes touch events to Flutter
+- [x] Shows sliders for offsets and alpha
+- [x] Shows dropdown menu for different widgets
+- [x] Displays flutter widget when dropdown is clicked
+- [x] Lets you add widgets in a dictionary style
+- [ ] Refactored and unified code
 
-<img src="https://github.com/DanielEdrisian/FlutterSwiftUIOverlay/blob/master/simulator_screenshot_59F3D0D6-6252-4D02-A336-DECD69ACF445.png" width="250">
+[Screen recording of demo](https://github.com/DanielEdrisian/FlutterSwiftUIOverlay/blob/master/final%20scr.mov)
 
 # Get Started
 
-To add your SwiftUI code, open 
+To add your SwiftUI code, open `OverlaySwiftUIView.swift` and add your widgets.
+Make sure to add corresponding keys to both `OverlayFlutterViewController` and `main.dart`.
