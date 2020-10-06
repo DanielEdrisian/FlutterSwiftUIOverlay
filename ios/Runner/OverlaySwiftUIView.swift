@@ -11,6 +11,7 @@ struct OverlaySwiftUIView: View {
   
   @State var selectedText: String = ""
       
+  // Add your controls here
   var controlDictionary: [String: (String, AnyView)] {
     ["CupertinoButton": // Key
       ("Cupertino button", // Title
@@ -22,12 +23,12 @@ struct OverlaySwiftUIView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle()))
       ),
      "CupertinoPicker":
-     ("Cupertino Picker",
-      AnyView(Picker(selection: $selectedText, label: Text("")) {
+      ("Cupertino Picker",
+       AnyView(Picker(selection: $selectedText, label: Text("")) {
         ForEach(["One", "Two", "Three", "Four", "Five"], id: \.self) {
           Text($0)
         }
-      })
+       })
       ),
     ]
   }
